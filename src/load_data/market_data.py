@@ -1,13 +1,6 @@
-import os
-
-
-
 import pandas as pd
-import numpy as np
-import datetime as dt
-
 import quandl as qua
-
+import os
 from dotenv import load_dotenv, find_dotenv
 
 from src import utils
@@ -19,6 +12,7 @@ load_dotenv(dotenv_path)
 root_path = os.environ.get("LOCAL_PATH")
 data_path = os.path.join(root_path, "data", "")
 raw_path = os.path.join(data_path, "raw", "")
+interim_path = os.path.join(data_path, "interim", "")
 QUANDL_KEY = os.environ.get("QUANDL_KEY")
 
 
@@ -69,3 +63,19 @@ def create_comm_df(df_dict: dict, freq: str = 'B'):
     comm_df = pd.concat(df_lst, join='inner', axis=1)
 
     return comm_df
+
+
+def read_mkt_data():
+    comm_intm_path = os.path.join(interim_path, conf['files']['interim']['market'])
+
+    comm_df = pd.read_csv(comm_intm_path, parse_dates=['Date'], index_col='Date')
+
+    return comm_df
+
+
+def read_cnmc_data():
+    cnmc_intm_path = os.path.join(interim_path, conf['files']['interim']['cnmc'])
+
+    cnmc_df = pd.read_csv(cnmc_intm_path, parse_dates=['Date'], index_col='Date')
+
+    return cnmc_df

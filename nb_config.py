@@ -17,10 +17,13 @@ if __name__ == '__main__' and __package__ is None:
     pd.set_option("display.max_columns", 100)
     pd.set_option("display.max_rows", 50)
     pd.set_option('max_info_columns', 5)
-    pd.set_option('precision', 4)
-    pd.options.display.float_format = '{:,.2f}'.format
+    pd.set_option('precision', 6)
+    pd.options.display.float_format = '{:,.4f}'.format
 
-    plt.rcParams.update({'font.size': 16,
-                     'figure.figsize': (12, 6),
-                     'lines.linewidth': 4})
-    sns.set_context("paper")
+    #plt.rcParams.update({'font.size': 16,
+    #                 'figure.figsize': (12, 6),
+    #                 'lines.linewidth': 4})
+
+    plt.rcParams.update({'figure.figsize': (12, 6)})
+    sns.set_context("talk")
+    sns.set_style("darkgrid")
