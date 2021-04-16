@@ -7,6 +7,13 @@ from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 
 
 def get_targets(y, tau):
+    """
+    (y[t+1]-y[t])/y[t+1] approximates to: np.log(y[t+1]) - np.log(y[t]) = np.log(y[t+1]/y[t])
+    https://stats.stackexchange.com/questions/244199/why-is-it-that-natural-log-changes-are-percentage-changes-what-is-about-logs-th
+    :param y:
+    :param tau:
+    :return:
+    """
     agg = y.rolling(tau).median()
     return np.log(agg.shift(-tau).div(agg)).iloc[tau:-tau]
 
@@ -37,16 +44,16 @@ def compute_macd(x: pd.DataFrame, short_tau: int, long_tau: int):
 
 class MACD(BaseEstimator, TransformerMixin):
     """
-
+    Computes MACD (Moving Average Convergence Divergence) Indicator
     Parameters
     ----------
-
-    Attributes
-    ----------
-
+    short_tau: short moving average period
+    long_tau: long moving average period
+    zscore_tau:
+    flg_zcore:
     See Also
     --------
-
+    https://www.investopedia.com/terms/m/macd.asp
     """
 
     def __init__(self, short_tau=5, long_tau=20, zscore_tau=60, flg_zcore=True):
