@@ -8,7 +8,6 @@ from src import utils
 dotenv_path = find_dotenv()
 load_dotenv(dotenv_path)
 
-
 root_path = os.environ.get("LOCAL_PATH")
 data_path = os.path.join(root_path, "data", "")
 raw_path = os.path.join(data_path, "raw", "")

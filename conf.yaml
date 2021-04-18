@@ -35,7 +35,6 @@ files:
             desc: Petroleum and biofuels Spanish market. Prices and Consumption
             freq: MS
             file: petroleo_cnmc.xlsx
-
     interim:
         market: comm_day_close.csv
         cnmc: cnmc_mon_petromkt.csv
@@ -47,3 +46,9 @@ sources:
         end_dt: 2021-03-30
 
 
+fparams:
+    brent_model:
+        target_tau: 5 
+        kfolds: 3 
+        split_dt: 2019-12-31
+        data_dt: 2020-06-30
